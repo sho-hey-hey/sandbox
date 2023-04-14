@@ -15,7 +15,7 @@
     window.addEventListener('message', function (e) {
       if (event.origin !== "https://platform.twitter.com")
         return;
-      const twitterEmbed = e.data.twttr.embed;
+      const twitterEmbed = e.data['twttr.embed'];
       console.log(twitterEmbed);
       if(twitterEmbed) {
         const div = window.document.createElement("div")
@@ -27,12 +27,12 @@
         dl.appendChild(dt)
         dt.innerText = method
         params.forEach((v) => {
-          const dd = window.document.createElement("dd")
+          const dd = window.document.createElement('dd')
           dd.innerText = JSON.stringify(v)
           dl.appendChild(dd)
         })
         div.className="log"
-        window.document.getElementById("log").appendChild(div)                                                        
+        window.document.getElementById('log').appendChild(div)                                                        
       }
     });
   </script>
