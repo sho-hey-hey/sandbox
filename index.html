@@ -15,11 +15,25 @@
     window.addEventListener('message', function (e) {
       if (event.origin !== "https://platform.twitter.com")
         return;
-      console.log(e.data);
-      const div = window.document.createElement("div")
-      div.innerText = window.JSON.stringify(e.data)
-      div.className="log"
-      window.document.getElementById("log").appendChild(div)                                                        
+      const twitterEmbed = e.data.twttr.embed;
+      console.log(twitterEmbed);
+      if(twitterEmbed) {
+        const div = window.document.createElement("div")
+        const dl = window.document.createElement("dl")
+        const dt = window.document.createElement("dt")
+        const method = twitterEmbed.method
+        const params = twitterEmbed.params
+        div.appendChild(dl)
+        dl.appendChild(dt)
+        dt.innerText = method
+        params.forEach((v) => {
+          const dd = window.document.createElement("dd")
+          dd.innerText = JSON.stringify(v)
+          dl.appendChild(dd)
+        })
+        div.className="log"
+        window.document.getElementById("log").appendChild(div)                                                        
+      }
     });
   </script>
 </head>
