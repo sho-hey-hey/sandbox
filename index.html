@@ -58,15 +58,15 @@
   <script>
     const tweetLikeButton = document.getElementById("tweet-like")
     tweetLikeButton.addEventListener("click", () => {
-      const w = window.open("", "_blank")
-//       const a = window.document.createElement("a");
-//       a.href = 'https://twitter.com/intent/like?tweet_id=463440424141459456';
-//       a.target = '_blank';
-//       a.rel = 'noopener noreferrer';
-      setTimeout(() => {
-        w.location.href = "https://twitter.com/intent/like?tweet_id=463440424141459456";
+      const a = window.document.createElement("a");
+      a.href = 'https://twitter.com/intent/like?tweet_id=463440424141459456';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.setAttribute("mc-deep-link", "false");
+      a.click();
+//       setTimeout(() => {
 //         a.click();
-      }, 800)
+//       }, 800)
     })
   </script>
 </body>
