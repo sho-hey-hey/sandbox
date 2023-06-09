@@ -51,9 +51,17 @@
     <a href="https://twitter.com/intent/like?tweet_id=463440424141459456">お試しリンク(LIKE)</a>
   </div>
   <div>
-    <button onClick="() => {setTimeout(() => {window.location.href = 'https://twitter.com/intent/like?tweet_id=463440424141459456'}, 0)}">LIKE Browser</button>
+    <button id="tweet-like">LIKE Browser</button>
   </div>
   <footer>
   </footer>
+  <script>
+    const tweetLikeButton = document.getElementById("tweet-like")
+    tweetLikeButton.addEventListener("click", () => {
+      setTimeout(() => {
+        window.location.href = 'https://twitter.com/intent/like?tweet_id=463440424141459456'
+      }, 0)
+    })
+  </script>
 </body>
 </html>
