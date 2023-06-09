@@ -59,8 +59,12 @@
     const tweetLikeButton = document.getElementById("tweet-like")
     tweetLikeButton.addEventListener("click", () => {
       setTimeout(() => {
-        window.open('https://twitter.com/intent/like?tweet_id=463440424141459456', '_blank', 'noopener noreferrer')
-      }, 3000)
+        const a = window.document.createElement("a");
+        a.href = 'https://twitter.com/intent/like?tweet_id=463440424141459456';
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.click();
+      }, 0)
     })
   </script>
 </body>
