@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandbox</title>
+  <style>
+    .log + .log {
+      border-top: 1px solid;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+  </style>
+  <script type="text/javascript">
+    window.addEventListener('message', function (e) {
+      if (event.origin !== "https://platform.twitter.com")
+        return;
+      const twitterEmbed = e.data['twttr.embed'];
+      console.log(twitterEmbed);
+      if(twitterEmbed) {
+        const div = window.document.createElement("div")
+        const dl = window.document.createElement("dl")
+        const dt = window.document.createElement("dt")
+        const method = twitterEmbed.method
+        const params = twitterEmbed.params
+        div.appendChild(dl)
+        dl.appendChild(dt)
+        dt.innerText = method
+        params.forEach((v) => {
+          const dd = window.document.createElement('dd')
+          dd.innerText = JSON.stringify(v)
+          dl.appendChild(dd)
+        })
+        div.className="log"
+        window.document.getElementById('log').appendChild(div)                                                        
+      }
+    });
+  </script>
+</head>
+<body>
+  <header>
+  </header>
+  <main style="display: flex; gap: 16px;">
+    <div style="flex: 0 1 auto;">
+      <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sunsets don&#39;t get much better than this one over <a href="https://twitter.com/GrandTetonNPS?ref_src=twsrc%5Etfw">@GrandTetonNPS</a>. <a href="https://twitter.com/hashtag/nature?src=hash&amp;ref_src=twsrc%5Etfw">#nature</a> <a href="https://twitter.com/hashtag/sunset?src=hash&amp;ref_src=twsrc%5Etfw">#sunset</a> <a href="http://t.co/YuKy2rcjyU">pic.twitter.com/YuKy2rcjyU</a></p>&mdash; US Department of the Interior (@Interior) <a href="https://twitter.com/Interior/status/463440424141459456?ref_src=twsrc%5Etfw">May 5, 2014</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <div id="log" style="flex: 1 1 50%; height: 100%; background: #eee; border: 2px solid #aaa; border-radius: 6px; padding: 8px">
+    </div>
+  </main>
+  <div>
+    <a href="https://twitter.com/intent/like?tweet_id=463440424141459456">お試しリンク(LIKE)</a>
+  </div>
+  <div>
+    <button id="tweet-like">LIKE Browser</button>
+  </div>
+  <footer>
+  </footer>
+  <script>
+    const tweetLikeButton = document.getElementById("tweet-like")
+    tweetLikeButton.addEventListener("click", () => {
+      const a = window.document.createElement("a");
+      a.href = 'https://twitter.com/intent/like?tweet_id=463440424141459456';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.setAttribute("mc-deep-link", "false");
+      a.click();
+//       setTimeout(() => {
+//         a.click();
+//       }, 800)
+    })
+  </script>
+</body>
+</html>
